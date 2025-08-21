@@ -1,113 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta charset="utf, 8" />
+  <meta name="viewport" content="width=device, width, initial, scale=1, user, scalable=no" />
   <title>Love Letter Generator for Cristal</title>
-  <meta name="theme-color" content="#ffb6d9" />
+  <meta name="theme, color" content="#ffb6d9" />
   <style>
     :root{
-      --bg:#fff0f9; --card:#ffffff; --ink:#2a2a2a; --accent:#d86bff; --accent2:#ff6fa9; --muted:#7b7b7b;
+      , , bg:#fff0f9; , , card:#ffffff; , , ink:#2a2a2a; , , accent:#d86bff; , , accent2:#ff6fa9; , , muted:#7b7b7b;
     }
-    *{box-sizing:border-box}
+    *{box, sizing:border, box}
     html,body{height:100%}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;background:linear-gradient(135deg,var(--bg),#ffe6f7);color:var(--ink);overflow-x:hidden}
-    .fade-in{animation:fadeIn 0.8s ease forwards}
+    body{margin:0;font, family:system, ui,, apple, system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans, serif;background:linear, gradient(135deg,var(, , bg),#ffe6f7);color:var(, , ink);overflow, x:hidden}
+    .fade, in{animation:fadeIn 0.8s ease forwards}
     @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     .pulse{animation:pulse 2.4s infinite}
     @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
-    .app{max-width:680px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;}
-    header{padding:18px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;background:linear-gradient(180deg, var(--bg), rgba(255,240,249,0.7));backdrop-filter:saturate(140%) blur(6px);z-index:5}
-    .logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:white;font-weight:800;box-shadow:0 6px 18px rgba(255,111,169,.35)}
-    h1{font-size:20px;margin:0;color:#9b4bd8}
-    main{padding:16px;display:flex;flex-direction:column;gap:14px}
-    .card{background:var(--card);border-radius:22px;box-shadow:0 12px 28px rgba(216,107,255,.15), 0 4px 12px rgba(0,0,0,.05);padding:18px;transition:transform 0.2s, box-shadow .2s}
-    .card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(216,107,255,.22), 0 6px 14px rgba(0,0,0,.06)}
-    .controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .controls button, .controls .full{grid-column:span 2}
-    button{appearance:none;border:0;border-radius:16px;padding:14px 16px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:700;font-size:16px;box-shadow:0 8px 18px rgba(216,107,255,.35);touch-action:manipulation;transition:transform .12s ease, opacity .2s ease}
+    .app{max, width:680px;margin:0 auto;min, height:100%;display:flex;flex, direction:column;}
+    header{padding:18px 16px;display:flex;align, items:center;gap:10px;position:sticky;top:0;background:linear, gradient(180deg, var(, , bg), rgba(255,240,249,0.7));backdrop, filter:saturate(140%) blur(6px);z, index:5}
+    .logo{width:42px;height:42px;border, radius:14px;background:linear, gradient(135deg,var(, , accent),var(, , accent2));display:grid;place, items:center;color:white;font, weight:800;box, shadow:0 6px 18px rgba(255,111,169,.35)}
+    h1{font, size:20px;margin:0;color:#9b4bd8}
+    main{padding:16px;display:flex;flex, direction:column;gap:14px}
+    .card{background:var(, , card);border, radius:22px;box, shadow:0 12px 28px rgba(216,107,255,.15), 0 4px 12px rgba(0,0,0,.05);padding:18px;transition:transform 0.2s, box, shadow .2s}
+    .card:hover{transform:translateY(, 3px);box, shadow:0 16px 34px rgba(216,107,255,.22), 0 6px 14px rgba(0,0,0,.06)}
+    .controls{display:grid;grid, template, columns:1fr 1fr;gap:10px}
+    .controls button, .controls .full{grid, column:span 2}
+    button{appearance:none;border:0;border, radius:16px;padding:14px 16px;background:linear, gradient(135deg,var(, , accent),var(, , accent2));color:#fff;font, weight:700;font, size:16px;box, shadow:0 8px 18px rgba(216,107,255,.35);touch, action:manipulation;transition:transform .12s ease, opacity .2s ease}
     button:hover{opacity:0.93}
     button:active{transform:scale(0.97)}
-    button.ghost{background:#fff;color:var(--accent2);border:2px solid var(--accent2);box-shadow:none}
+    button.ghost{background:#fff;color:var(, , accent2);border:2px solid var(, , accent2);box, shadow:none}
     button.secondary{background:#111;color:#fff}
-    .note{font-size:18px;line-height:1.6;white-space:pre-wrap;color:#4a2a4a;min-height:130px}
-    .muted{color:var(--muted);font-size:13px}
-    .row{display:flex;gap:10px;align-items:center}
-    input, textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #e8e8e8;background:#fff;box-shadow:0 1px 0 #00000008 inset;font-size:16px}
-    textarea{min-height:90px;resize:vertical}
-    details{background:var(--card);border-radius:18px;padding:10px 12px}
-    summary{cursor:pointer;font-weight:700;list-style:none;color:#9b4bd8}
-    summary::-webkit-details-marker{display:none}
-    .chip{display:inline-flex;align-items:center;gap:6px;border:1px dashed #ffc2db;color:#c83b78;background:#fff6fb;padding:6px 10px;border-radius:999px;font-size:12px}
-    .footer{padding:20px 16px 40px;text-align:center;color:var(--muted);font-size:12px}
-    .heart{display:inline-block;transform:translateY(3px)}
+    .note{font, size:18px;line, height:1.6;white, space:pre, wrap;color:#4a2a4a;min, height:130px}
+    .muted{color:var(, , muted);font, size:13px}
+    .row{display:flex;gap:10px;align, items:center}
+    input, textarea{width:100%;padding:12px 14px;border, radius:12px;border:1px solid #e8e8e8;background:#fff;box, shadow:0 1px 0 #00000008 inset;font, size:16px}
+    textarea{min, height:90px;resize:vertical}
+    details{background:var(, , card);border, radius:18px;padding:10px 12px}
+    summary{cursor:pointer;font, weight:700;list, style:none;color:#9b4bd8}
+    summary::, webkit, details, marker{display:none}
+    .chip{display:inline, flex;align, items:center;gap:6px;border:1px dashed #ffc2db;color:#c83b78;background:#fff6fb;padding:6px 10px;border, radius:999px;font, size:12px}
+    .footer{padding:20px 16px 40px;text, align:center;color:var(, , muted);font, size:12px}
+    .heart{display:inline, block;transform:translateY(3px)}
     .hidden{display:none}
-    .blink{animation:blink 1s step-end infinite}
+    .blink{animation:blink 1s step, end infinite}
     @keyframes blink{50%{opacity:0}}
   </style>
 </head>
 <body>
   <div class="app">
-    <header class="fade-in">
+    <header class="fade, in">
       <div class="logo pulse">♥</div>
       <div>
         <h1>For Cristal</h1>
-        <div class="muted" id="subtitle">A pink 💖 & purple 💜 note every time you tap</div>
+        <div class="muted" id="subtitle">A  💜 note every time you tap</div>
       </div>
-      <div style="margin-left:auto" class="chip" id="daysTogether">4 months</div>
+      <div style="margin, left:auto" class="chip" id="daysTogether">4 months</div>
     </header>
 
     <main>
-      <section class="card fade-in">
-        <div class="note" id="output">Tap “Generate” to craft a new love letter just for you, Cristal. 💌</div>
+      <section class="card fade, in">
+        <div class="note" id="output">Tap “Generate” to craft a new love letter just for you, ma lune. 💌</div>
         <div class="muted" id="stamp"></div>
-        <div class="controls" style="margin-top:12px">
+        <div class="controls" style="margin, top:12px">
           <button id="gen">Generate</button>
           <button class="ghost" id="save">Save to Gallery (PNG)</button>
           <button class="secondary full" id="share">Share / Copy</button>
         </div>
       </section>
 
-      <section class="card fade-in">
+      <section class="card fade, in">
         <div class="row">
           <input id="partner" placeholder="Cristal" value="Cristal" />
         </div>
-        <div class="row" style="margin-top:8px">
+        <div class="row" style="margin, top:8px">
           <input id="fromName" placeholder="Your name or nickname" />
         </div>
-        <div class="muted" style="margin-top:6px">Names personalize each letter (e.g., “Dear Cristal ♥”). Tap the months chip to set your start date.</div>
+        <div class="muted" style="margin, top:6px">Names personalize each letter (e.g., “Dear Cristal ♥”). Tap the months chip to set your start date.</div>
       </section>
 
-      <details class="fade-in">
+      <details class="fade, in">
         <summary>✏️ Add your own reasons</summary>
-        <div class="card" style="margin-top:10px">
+        <div class="card" style="margin, top:10px">
           <textarea id="customReasons" placeholder="Write one reason per line…"></textarea>
-          <div class="row" style="margin-top:10px;flex-wrap:wrap">
+          <div class="row" style="margin, top:10px;flex, wrap:wrap">
             <button id="addReasons">Add</button>
             <button class="ghost" id="exportReasons">Export</button>
             <button class="ghost" id="importReasons">Import</button>
             <input id="fileInput" type="file" accept="application/json" class="hidden" />
           </div>
-          <div class="muted" style="margin-top:8px">Your reasons are saved only on this device (offline) using localStorage.</div>
+          <div class="muted" style="margin, top:8px">Your reasons are saved only on this device (offline) using localStorage.</div>
         </div>
       </details>
 
-      <details class="fade-in">
+      <details class="fade, in">
         <summary>🖼️ Saved Gallery (<span id="galleryCount">0</span>)</summary>
-        <div class="card" style="margin-top:10px">
-          <div id="gallery" style="display:grid;grid-template-columns:1fr 1fr;gap:10px"></div>
-          <div class="muted" style="margin-top:10px">Long-press an item to delete it.</div>
+        <div class="card" style="margin, top:10px">
+          <div id="gallery" style="display:grid;grid, template, columns:1fr 1fr;gap:10px"></div>
+          <div class="muted" style="margin, top:10px">Long, press an item to delete it.</div>
         </div>
       </details>
 
-      <section class="footer fade-in">Made with endless 💖 and 💜 for Cristal, celebrating 4 months of us. No distance can dull what we share, and every tap here is another small reminder of how much you mean to me. Even through time zones and the quiet moments, you’re always the reason I smile. This little generator will never run out of words for you—because my love for you only grows.</section>
+      <section class="footer fade, in">Made with endless 💖 and 💜 for Cristal, celebrating 4 months of us. No distance can dull what we share, and every tap here is another small reminder of how much you mean to me. Even through the quiet moments, you’re always the reason I smile. This little generator will never run out of words for you, because my love for you only grows.</section>
     </main>
   </div>
 
   <canvas id="canvas" class="hidden"></canvas>
 
   <script>
-    // --- Utilities & State ---
+    // , , ,  Utilities & State , , , 
     const $ = (q)=>document.querySelector(q);
     const state = {
       partner: 'Cristal',
@@ -132,7 +132,7 @@
         "Your smile lives on my lock screen and in my head.",
         "You make ordinary days feel like little holidays.",
         "I love how you hype me up without being asked.",
-        "You see the best in me—and remind me of it.",
+        "You see the best in me, and remind me of it.",
         "You’re sunshine and moonlight, in perfect shifts.",
         "Your patience makes our love feel safe.",
         "You’re the reason my phone battery dies happily.",
@@ -150,7 +150,7 @@
         "I save your messages like postcards from home.",
         "You make me feel lucky in a way I can’t explain.",
         "You’re my peace, even in pieces.",
-        "You turn my what-ifs into we-gots-this.",
+        "You turn my what-ifs into we, gots, this.",
         "Your laugh is the soundtrack of my favorite scenes.",
         "You make waiting feel like building, not wasting.",
         "I love the way you care for others—it shows your heart.",
@@ -232,7 +232,7 @@
         "You’re the steady beat in my busy day.",
         "You make me count down with a happy heart.",
         "You’re my safest secret and my brightest truth.",
-        "You make me want to be better—for us.",
+        "You make me want to be better, for us.",
         "You turn ‘I miss you’ into motivation, not sadness.",
         "You’re the softest place I land.",
         "You make love feel like the most natural thing.",
@@ -240,7 +240,7 @@
         "You make me believe we’re exactly where we’re meant to be.",
         "You’re the calm glow between my worries.",
         "You turn miles into smiles.",
-        "You’re the sweet in my every day.",
+        "You’re the sweet in my everyday.",
         "You make my heart feel at home.",
         "You’re my always, even now."
       ],
@@ -260,12 +260,12 @@
       const start = new Date(state.since);
       if(isNaN(+start)){ chip.textContent = '4 months'; return; }
       const now = new Date();
-      let months = (now.getFullYear()-start.getFullYear())*12 + (now.getMonth()-start.getMonth());
-      if(now.getDate()<start.getDate()) months -= 1;
+      let months = (now.getFullYear(), start.getFullYear())*12 + (now.getMonth(), start.getMonth());
+      if(now.getDate()<start.getDate()) months , = 1;
       chip.textContent = months + (months===1?' month':' months');
     }
 
-    // --- Typing effect ---
+    // , , ,  Typing effect , , , 
     async function typeText(el, text){
       el.textContent = '';
       for(let i=0;i<text.length;i++){
@@ -274,7 +274,7 @@
       }
     }
 
-    // --- Generator ---
+    // , , ,  Generator , , , 
     function pick(arr){ return arr[Math.floor(Math.random()*arr.length)] }
 
     function generateNote(){
@@ -288,11 +288,11 @@
       return {text, stamp};
     }
 
-    // --- Canvas export (PNG) ---
+    // , , ,  Canvas export (PNG) , , , 
     function saveAsImage(text){
       const canvas = $('#canvas');
       const ctx = canvas.getContext('2d');
-      const W = 1080, H = 1350, P = 64; // phone-friendly export
+      const W = 1080, H = 1350, P = 64; // phone, friendly export
       canvas.width = W; canvas.height = H;
       // Background gradient
       const grad = ctx.createLinearGradient(0,0,W,H);
@@ -300,21 +300,21 @@
       grad.addColorStop(1,'#ffe6f7');
       ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
       // Rounded white card
-      roundRect(ctx, P, P, W-P*2, H-P*2, 40, '#ffffff');
+      roundRect(ctx, P, P, W, P*2, H, P*2, 40, '#ffffff');
       // Title
       ctx.fillStyle = '#9b4bd8';
-      ctx.font = 'bold 36px Inter, -apple-system, system-ui';
+      ctx.font = 'bold 36px Inter, , apple, system, system, ui';
       ctx.fillText('For Cristal', P+40, P+50);
       // Body
       ctx.fillStyle = '#4a2a4a';
-      wrapText(ctx, text, P+40, P+110, W-(P+40)*2, 48, '28px Inter, -apple-system, system-ui');
+      wrapText(ctx, text, P+40, P+110, W, (P+40)*2, 48, '28px Inter, , apple, system, system, ui');
       // Stamp
-      ctx.font = '16px Inter, -apple-system, system-ui';
+      ctx.font = '16px Inter, , apple, system, system, ui';
       ctx.fillStyle = '#7b7b7b';
-      ctx.fillText(new Date().toLocaleString(), P+40, H-P-30);
+      ctx.fillText(new Date().toLocaleString(), P+40, H, P, 30);
       const url = canvas.toDataURL('image/png');
       addToGallery(url, text);
-      download(url, 'love-note.png');
+      download(url, 'love, note.png');
     }
 
     function roundRect(ctx, x,y,w,h,r, fill){
@@ -345,7 +345,7 @@
       const a=document.createElement('a'); a.href=url; a.download=name; a.click();
     }
 
-    // --- Gallery ---
+    // , , ,  Gallery , , , 
     function addToGallery(url, text){
       state.gallery.unshift({url, text, t:+new Date});
       localStorage.setItem('ll_gallery', JSON.stringify(state.gallery));
@@ -374,7 +374,7 @@
       function del(i){ if(confirm('Delete this saved note?')){ state.gallery.splice(i,1); localStorage.setItem('ll_gallery', JSON.stringify(state.gallery)); renderGallery(); } }
     }
 
-    // --- Events ---
+    // , , ,  Events , , , 
     $('#gen').addEventListener('click', ()=>generateNote());
     $('#save').addEventListener('click', ()=>{ const {text}=generateNote(); saveAsImage(text); });
     $('#share').addEventListener('click', async ()=>{
@@ -426,7 +426,7 @@
 
     // Set start date via chip
     $('#daysTogether').addEventListener('click', ()=>{
-      const val = prompt('Enter your start date (YYYY-MM-DD). Optional.');
+      const val = prompt('Enter your start date (YYYY, MM, DD). Optional.');
       if(val){ state.since=val; localStorage.setItem('ll_since', val); computeMonths(); }
     })
   </script>
