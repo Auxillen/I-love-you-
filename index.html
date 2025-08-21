@@ -1,434 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf, 8" />
-  <meta name="viewport" content="width=device, width, initial, scale=1, user, scalable=no" />
-  <title>Love Letter Generator for Cristal</title>
-  <meta name="theme, color" content="#ffb6d9" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Letters for Cristal</title>
   <style>
-    :root{
-      , , bg:#fff0f9; , , card:#ffffff; , , ink:#2a2a2a; , , accent:#d86bff; , , accent2:#ff6fa9; , , muted:#7b7b7b;
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #ffb6f1, #caa9ff);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      color: #4a004e;
+      text-align: center;
     }
-    *{box, sizing:border, box}
-    html,body{height:100%}
-    body{margin:0;font, family:system, ui,, apple, system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans, serif;background:linear, gradient(135deg,var(, , bg),#ffe6f7);color:var(, , ink);overflow, x:hidden}
-    .fade, in{animation:fadeIn 0.8s ease forwards}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-    .pulse{animation:pulse 2.4s infinite}
-    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
-    .app{max, width:680px;margin:0 auto;min, height:100%;display:flex;flex, direction:column;}
-    header{padding:18px 16px;display:flex;align, items:center;gap:10px;position:sticky;top:0;background:linear, gradient(180deg, var(, , bg), rgba(255,240,249,0.7));backdrop, filter:saturate(140%) blur(6px);z, index:5}
-    .logo{width:42px;height:42px;border, radius:14px;background:linear, gradient(135deg,var(, , accent),var(, , accent2));display:grid;place, items:center;color:white;font, weight:800;box, shadow:0 6px 18px rgba(255,111,169,.35)}
-    h1{font, size:20px;margin:0;color:#9b4bd8}
-    main{padding:16px;display:flex;flex, direction:column;gap:14px}
-    .card{background:var(, , card);border, radius:22px;box, shadow:0 12px 28px rgba(216,107,255,.15), 0 4px 12px rgba(0,0,0,.05);padding:18px;transition:transform 0.2s, box, shadow .2s}
-    .card:hover{transform:translateY(, 3px);box, shadow:0 16px 34px rgba(216,107,255,.22), 0 6px 14px rgba(0,0,0,.06)}
-    .controls{display:grid;grid, template, columns:1fr 1fr;gap:10px}
-    .controls button, .controls .full{grid, column:span 2}
-    button{appearance:none;border:0;border, radius:16px;padding:14px 16px;background:linear, gradient(135deg,var(, , accent),var(, , accent2));color:#fff;font, weight:700;font, size:16px;box, shadow:0 8px 18px rgba(216,107,255,.35);touch, action:manipulation;transition:transform .12s ease, opacity .2s ease}
-    button:hover{opacity:0.93}
-    button:active{transform:scale(0.97)}
-    button.ghost{background:#fff;color:var(, , accent2);border:2px solid var(, , accent2);box, shadow:none}
-    button.secondary{background:#111;color:#fff}
-    .note{font, size:18px;line, height:1.6;white, space:pre, wrap;color:#4a2a4a;min, height:130px}
-    .muted{color:var(, , muted);font, size:13px}
-    .row{display:flex;gap:10px;align, items:center}
-    input, textarea{width:100%;padding:12px 14px;border, radius:12px;border:1px solid #e8e8e8;background:#fff;box, shadow:0 1px 0 #00000008 inset;font, size:16px}
-    textarea{min, height:90px;resize:vertical}
-    details{background:var(, , card);border, radius:18px;padding:10px 12px}
-    summary{cursor:pointer;font, weight:700;list, style:none;color:#9b4bd8}
-    summary::, webkit, details, marker{display:none}
-    .chip{display:inline, flex;align, items:center;gap:6px;border:1px dashed #ffc2db;color:#c83b78;background:#fff6fb;padding:6px 10px;border, radius:999px;font, size:12px}
-    .footer{padding:20px 16px 40px;text, align:center;color:var(, , muted);font, size:12px}
-    .heart{display:inline, block;transform:translateY(3px)}
-    .hidden{display:none}
-    .blink{animation:blink 1s step, end infinite}
-    @keyframes blink{50%{opacity:0}}
+    header {
+      padding: 1rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .chip {
+      background: #fff0f9;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .chip:hover {
+      transform: scale(1.05);
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      width: 100%;
+    }
+    #note {
+      background: #fff;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      margin: 1rem;
+      max-width: 500px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: fadeInUp 0.8s ease;
+      min-height: 120px;
+      font-size: 1.1rem;
+      position: relative;
+    }
+    button {
+      background: #ffb6f1;
+      border: none;
+      border-radius: 2rem;
+      padding: 0.7rem 1.5rem;
+      margin: 0.3rem;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s, background 0.3s;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      background: #ff9ee7;
+    }
+    footer {
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #3a003d;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .typing {
+      border-right: .15em solid #4a004e;
+      white-space: nowrap;
+      overflow: hidden;
+    }
   </style>
 </head>
 <body>
-  <div class="app">
-    <header class="fade, in">
-      <div class="logo pulse">♥</div>
-      <div>
-        <h1>For Cristal</h1>
-        <div class="muted" id="subtitle">A  💜 note every time you tap</div>
-      </div>
-      <div style="margin, left:auto" class="chip" id="daysTogether">4 months</div>
-    </header>
-
-    <main>
-      <section class="card fade, in">
-        <div class="note" id="output">Tap “Generate” to craft a new love letter just for you, ma lune. 💌</div>
-        <div class="muted" id="stamp"></div>
-        <div class="controls" style="margin, top:12px">
-          <button id="gen">Generate</button>
-          <button class="ghost" id="save">Save to Gallery (PNG)</button>
-          <button class="secondary full" id="share">Share / Copy</button>
-        </div>
-      </section>
-
-      <section class="card fade, in">
-        <div class="row">
-          <input id="partner" placeholder="Cristal" value="Cristal" />
-        </div>
-        <div class="row" style="margin, top:8px">
-          <input id="fromName" placeholder="Your name or nickname" />
-        </div>
-        <div class="muted" style="margin, top:6px">Names personalize each letter (e.g., “Dear Cristal ♥”). Tap the months chip to set your start date.</div>
-      </section>
-
-      <details class="fade, in">
-        <summary>✏️ Add your own reasons</summary>
-        <div class="card" style="margin, top:10px">
-          <textarea id="customReasons" placeholder="Write one reason per line…"></textarea>
-          <div class="row" style="margin, top:10px;flex, wrap:wrap">
-            <button id="addReasons">Add</button>
-            <button class="ghost" id="exportReasons">Export</button>
-            <button class="ghost" id="importReasons">Import</button>
-            <input id="fileInput" type="file" accept="application/json" class="hidden" />
-          </div>
-          <div class="muted" style="margin, top:8px">Your reasons are saved only on this device (offline) using localStorage.</div>
-        </div>
-      </details>
-
-      <details class="fade, in">
-        <summary>🖼️ Saved Gallery (<span id="galleryCount">0</span>)</summary>
-        <div class="card" style="margin, top:10px">
-          <div id="gallery" style="display:grid;grid, template, columns:1fr 1fr;gap:10px"></div>
-          <div class="muted" style="margin, top:10px">Long, press an item to delete it.</div>
-        </div>
-      </details>
-
-      <section class="footer fade, in">Made with endless 💖 and 💜 for Cristal, celebrating 4 months of us. No distance can dull what we share, and every tap here is another small reminder of how much you mean to me. Even through the quiet moments, you’re always the reason I smile. This little generator will never run out of words for you, because my love for you only grows.</section>
-    </main>
-  </div>
-
-  <canvas id="canvas" class="hidden"></canvas>
+  <header>
+    Love Letters for Cristal
+    <div class="chip" id="monthsChip">4 months</div>
+  </header>
+  <main>
+    <div id="note">Click generate to write a love note for Cristal</div>
+    <div>
+      <button onclick="generateNote()">Generate</button>
+      <button onclick="copyNote()">Copy</button>
+      <button onclick="shareNote()">Share</button>
+      <button onclick="saveNote()">Save</button>
+    </div>
+  </main>
+  <footer>
+    For Cristal, every moment of these 4 months has been precious. Thank you for being the light in my life. 💖
+  </footer>
 
   <script>
-    // , , ,  Utilities & State , , , 
-    const $ = (q)=>document.querySelector(q);
-    const state = {
-      partner: 'Cristal',
-      from: localStorage.getItem('ll_from') || '',
-      reasons: JSON.parse(localStorage.getItem('ll_reasons')||'null') || [
-        "Cristal, your laugh is the spark that brightens my whole day.",
-        "You check on me even when I forget to check on myself.",
-        "You make distance feel like a delay, not a barrier.",
-        "Every goodnight from you feels like a hug I can keep.",
-        "You turn tiny moments into memories I replay.",
-        "You remember details no one else notices—and it makes me feel seen.",
-        "Your voice calms the loud parts of my mind.",
-        "You celebrate my wins like they’re yours.",
-        "Even on tough days, you still choose us.",
-        "We can sit in silence and it still feels like home.",
-        "You’re my favorite notification.",
-        "You make me want to be softer, braver, kinder.",
-        "I love the way you say my name.",
-        "You’re honest with your heart and gentle with mine.",
-        "You make every countdown worth it.",
-        "You’re the place my thoughts go to rest.",
-        "Your smile lives on my lock screen and in my head.",
-        "You make ordinary days feel like little holidays.",
-        "I love how you hype me up without being asked.",
-        "You see the best in me, and remind me of it.",
-        "You’re sunshine and moonlight, in perfect shifts.",
-        "Your patience makes our love feel safe.",
-        "You’re the reason my phone battery dies happily.",
-        "I love the silly inside jokes only we get.",
-        "You text me at the exact moment I need you.",
-        "You’re the dream I get to keep while I’m awake.",
-        "You ask about my day and actually care about the answers.",
-        "You make me feel chosen, not just wanted.",
-        "Hearing your ‘hi’ resets my whole mood.",
-        "You make the future feel like a warm room with lights on.",
-        "You notice when I’m quiet and hold space for me.",
-        "You’re the soft landing after my long days.",
-        "I love planning little surprises for you.",
-        "You’re the best part of my routines.",
-        "I save your messages like postcards from home.",
-        "You make me feel lucky in a way I can’t explain.",
-        "You’re my peace, even in pieces.",
-        "You turn my what-ifs into we, gots, this.",
-        "Your laugh is the soundtrack of my favorite scenes.",
-        "You make waiting feel like building, not wasting.",
-        "I love the way you care for others—it shows your heart.",
-        "You ask the sweetest follow-up questions.",
-        "You keep me grounded and lifted at the same time.",
-        "You make me braver about love.",
-        "You’re the reason I count hours and not miles.",
-        "You make promises feel like places we’ll arrive at.",
-        "You’re my calm cup of tea on stormy nights.",
-        "You turn random Tuesdays into anniversaries of tiny moments.",
-        "You don’t let me forget I’m loved.",
-        "You’re the smile I wear in crowded rooms.",
-        "You turn my phone into a portal back to you.",
-        "You make me feel like the best version of myself.",
-        "You’re the ‘ping’ that sounds like home.",
-        "You listen to understand, not just reply.",
-        "You’re the soft glow after the sun sets.",
-        "You remind me what gentle love looks like.",
-        "You notice when I’m overwhelmed and slow the world down.",
-        "You give me butterflies and comfort at once.",
-        "You turn our distance into a story worth telling.",
-        "Your good mornings feel like fresh starts.",
-        "You’re the reason I look forward to tomorrow.",
-        "You make me feel chosen every single day.",
-        "You melt my worry with a single emoji.",
-        "You’re my favorite place, even through a screen.",
-        "You make home a person, not a place.",
-        "You make me laugh when I’m trying to be mad.",
-        "You make ‘see you soon’ feel real.",
-        "You’re kind in ways that don’t need an audience.",
-        "You take care of love like it’s alive—because it is.",
-        "You’re my softest constant.",
-        "You remember my favorites and make them special.",
-        "You’re the reason my walls have windows.",
-        "You make time zones feel like a puzzle we solve together.",
-        "You are my safest yes.",
-        "Your voice note replays are my lullaby.",
-        "You send me memes like love letters in disguise.",
-        "You make me feel seen on my quiet days.",
-        "You help me believe good things last.",
-        "You make the word ‘us’ feel holy.",
-        "You’re the reason sunsets look warmer lately.",
-        "You make me excited to grow older together.",
-        "You say ‘take your time’ and mean it.",
-        "You’re magic without tricks.",
-        "You hold space for my feelings like they matter.",
-        "You make the long weeks softer.",
-        "You are the echo I wait for and the answer I love.",
-        "You’re the note at the end of every playlist.",
-        "You make my heart speak in exclamation points.",
-        "You’re my favorite plan A—and plan B.",
-        "You make me want to write you poems.",
-        "You’re the reason I check the moon.",
-        "You make me feel like I’m worth waiting for too.",
-        "You’re gentle with my past and excited for my future.",
-        "You make my day feel complete.",
-        "You’re my lucky timing.",
-        "You help me carry things I don’t have words for.",
-        "You’re the reason I know what tenderness is.",
-        "You make ordinary messages feel like warm hands.",
-        "You’re the home screen of my heart.",
-        "You add color to my grayscale mornings.",
-        "You’re the lyric I never skip.",
-        "You make promises feel easy to keep.",
-        "You’re the plot twist I’m grateful for.",
-        "You turn ‘later’ into ‘soon’.",
-        "You’re the quiet miracle in my day.",
-        "You make me feel lucky just to exist at the same time.",
-        "You’re the cozy hoodie I never want to take off.",
-        "You make love look like everyday kindness.",
-        "You are my favorite hello and my softest goodnight.",
-        "You turn my doubts into little lights.",
-        "You’re the person I want to tell everything to first.",
-        "You make me feel chosen when I need it most.",
-        "You’re proof that love can be gentle and still strong.",
-        "You make me proud to love you out loud.",
-        "You’re the reason I’m smiling at my phone again.",
-        "You make our story my favorite thing to reread.",
-        "You’re the steady beat in my busy day.",
-        "You make me count down with a happy heart.",
-        "You’re my safest secret and my brightest truth.",
-        "You make me want to be better, for us.",
-        "You turn ‘I miss you’ into motivation, not sadness.",
-        "You’re the softest place I land.",
-        "You make love feel like the most natural thing.",
-        "You’re my favorite constant in a changing world.",
-        "You make me believe we’re exactly where we’re meant to be.",
-        "You’re the calm glow between my worries.",
-        "You turn miles into smiles.",
-        "You’re the sweet in my everyday.",
-        "You make my heart feel at home.",
-        "You’re my always, even now."
-      ],
-      gallery: JSON.parse(localStorage.getItem('ll_gallery')||'[]'),
-      since: localStorage.getItem('ll_since') || ''
-    };
+    const reasons = [
+      "Cristal, your smile is my favorite sunshine.",
+      "I love how you always know how to cheer me up.",
+      "These 4 months with you feel like a dream come true.",
+      "Cristal, your laughter makes my heart dance.",
+      "Every text from you makes my day instantly better.",
+      "Cristal, I admire your kindness and warmth.",
+      "Even from afar, you make me feel close to you.",
+      "I treasure every word we have shared.",
+      "Cristal, you make love feel effortless.",
+      "I am grateful for every single moment with you.",
+      "You bring peace to my restless days.",
+      "Cristal, I admire how strong you are.",
+      "You always know what to say when I need it most.",
+      "Cristal, I love the way you care so deeply.",
+      "Distance means nothing because of the closeness of your heart.",
+      "Cristal, you inspire me to be my best self.",
+      "Our love story is my favorite.",
+      "You have the most beautiful soul.",
+      "Cristal, every time I think of you I smile.",
+      "I cannot wait for all the months and years ahead with you.",
+      "Cristal, being with you is the best part of my life.",
+      "Even in silence, I feel your love.",
+      "Every morning I wake up thinking of you.",
+      "Cristal, you are my safe place.",
+      "I love your voice, it feels like home.",
+      "You are my forever and always.",
+      "Cristal, thank you for loving me as I am.",
+      "Every day I fall for you all over again.",
+      "You are my biggest blessing.",
+      "Cristal, you are everything I ever dreamed of.",
+      "I cherish the little things you do.",
+      "Cristal, you are my favorite hello and hardest goodbye.",
+      "No distance can ever dim the love I have for you.",
+      "Cristal, you are my happiness.",
+      "When I say I love you, I mean it with all my heart.",
+      "Cristal, you complete me in every way.",
+      "With you, love feels so magical.",
+      "Cristal, you are the reason for my best days.",
+      "I feel so lucky to call you mine.",
+      "Cristal, you are my soulmate.",
+      "Our love only grows stronger with time.",
+      "Cristal, every thought of you makes my heart race.",
+      "I love how you make ordinary moments special.",
+      "Cristal, you are my dream come true.",
+      "Even when we are apart, you are with me.",
+      "Cristal, I cannot wait to hold you",
+      "Your love gives me strength.",
+      "Cristal, you make the world brighter.",
+      "Forever starts and ends with you.",
+      "Cristal, I could spend a lifetime just getting lost in your eyes and still never have enough time with you.",
+      "Being loved by you makes every struggle feel smaller and every joy feel infinite.",
+      "Cristal, when I think about my future, it’s impossible to imagine it without you by my side.",
+      "Every little detail about you, from your smile to the way you speak, is etched beautifully into my heart.",
+      "Cristal, your presence in my life feels like the missing piece I had been searching for all along.",
+      "I never knew what true happiness was until you walked into my world and filled it with light.",
+      "Cristal, your love is the melody that turns the noise of life into a beautiful song.",
+      "Every time you laugh, it feels like the universe pauses just to let me enjoy that sound.",
+      "Cristal, being with you makes even the simplest moments feel magical and unforgettable.",
+      "No distance, no time, and no circumstance could ever lessen the depth of my love for you.",
+      "Cristal, you have a way of making me believe in dreams I never thought I could reach.",
+      "Every message from you is like a warm hug that I carry with me throughout the day.",
+      "Cristal, when I hear your name, my heart responds before my mind even has time to think.",
+      "The thought of holding your hand one day keeps me strong through the hardest times.",
+      "Cristal, you are not just in my heart, you are my heart.",
+      "The love you give me feels like home, no matter where I am in the world.",
+      "Cristal, you are my favorite part of every day and the sweetest thought every night.",
+      "Even in my dreams, I search for you, because you are everything I want and more.",
+      "Cristal, your love has turned my life into the most beautiful story I could ever live.",
+      "I could write a thousand letters and still never capture the depth of what I feel for you.",
+      "Cristal, you are my calm in the storm and the brightest star in my darkest skies.",
+      "Every time I imagine our future together, my heart races with joy and excitement.",
+      "Cristal, I don’t just love you, I admire you, respect you, and cherish everything about you.",
+      "You’ve given me more than love, you’ve given me hope, joy, and meaning in my life.",
+      "Cristal, if love were a language, every word I speak would be written only for you.",
+      "No poem, no song, no painting could ever express the beauty of how I feel about you.",
+      "Cristal, every day with you feels like another page in the best chapter of my life.",
+      "You’ve turned my ordinary world into something extraordinary just by being in it.",
+      "Cristal, I could travel the world, yet my heart would always find its home with you.",
+      "Every heartbeat of mine whispers your name, reminding me how deeply I love you.",
+      "Cristal, you’ve made me believe in the kind of love that only exists in fairytales.",
+      "When I think of forever, the only face I want beside me is yours.",
+      "Cristal, I love the way you see beauty in the small things and kindness in everyone.",
+      "Your love has made me stronger, softer, and more alive than I ever thought possible.",
+      "Cristal, even in silence, being with you feels like the loudest declaration of love.",
+      "Every day I wake up grateful that my heart belongs to you.",
+      "Cristal, you are the most precious gift life has ever given me.",
+      "I never believed in destiny until every path I took led me closer to you.",
+      "Cristal, your happiness is the most important thing in the world to me.",
+      "When I am with you, time stands still, and all that matters is us.",
+      "Cristal, loving you has been the easiest and most natural thing in my life.",
+      "Every memory we create together feels like treasure I will hold onto forever.",
+      "Cristal, your love is like a lighthouse guiding me safely through every storm.",
+      "If I could choose anyone in the universe, I would still choose you every single time.",
+      "Cristal, you are not just part of my life, you are my whole world.",
+      "Even the stars envy the way your presence lights up my nights.",
+      "Cristal, your love has become the most beautiful truth I have ever known.",
+      "No matter where I am, your love follows me like the sweetest echo of home.",
+      "Cristal, you are proof that dreams really do come true.",
+      "Your love is the kind of miracle that makes life feel worth living.",
+      "Cristal, with you, every goodbye feels too soon and every hello feels like magic.",
+      "You’ve turned my fears into courage and my loneliness into love.",
+      "Cristal, your love is my anchor and my wings at the same time.",
+      "I could never measure my love for you because it grows endlessly each day.",
+      "Cristal, your heart is the most beautiful place I’ve ever known.",
+      "Even if the world faded away, my love for you would remain eternal.",
+      "Cristal, being yours has been the happiest decision I have ever made.",
+      "I want to build a lifetime of memories with you one day at a time.",
+      "Cristal, you are my safe harbor and my greatest adventure all at once.",
+      "I fall in love with you deeper every time you simply say my name.",
+      "Cristal, your love has made me see the world in brighter colors.",
+      "Every kiss I imagine giving you holds a universe of love within it.",
+      "Cristal, my heart belongs to you today, tomorrow, and always.",
+      "With you, I don’t just feel loved, I feel truly understood.",
+      "Cristal, you are the sweetest dream I never want to wake up from.",
+      "The love you give me is the reason I believe in miracles.",
+      "Cristal, you’ve turned my life into the most beautiful love story ever told.",
+      "Every single second without you makes me miss you more than words can say.",
+      "Cristal, if my love were a flower, it would bloom endlessly just for you.",
+      "I’ve found my soulmate, my best friend, and my forever love in you.",
+      "Cristal, you are the reason I look forward to every single day.",
+      "Your love makes even the hardest days feel bearable and full of hope.",
+      "Cristal, I don’t just want you in my life, I need you in my forever.",
+      "Every promise I make to you comes straight from the depths of my heart.",
+      "Cristal, you are the reason I smile at nothing and daydream endlessly.",
+      "My love for you is as vast as the ocean and as endless as the sky.",
+      "Cristal, your love is the light that brightens even my darkest nights.",
+      "Even forever wouldn’t feel long enough to love you the way I want to.",
+      "Cristal, your kindness and beauty inspire me to be a better person every day.",
+      "You’ve shown me that love isn’t just a feeling, it’s a home in someone’s heart.",
+      "Cristal, you are the best decision my heart has ever made.",
+      "Every part of me belongs to you, and I wouldn’t have it any other way.",
+      "Cristal, you are my favorite thought in the morning and my last prayer at night.",
+      "I could cross galaxies and still never find another love like yours.",
+      "Cristal, being loved by you is the greatest honor of my life.",
+      "You’ve given me a reason to believe in love that lasts forever.",
+      "Cristal, your love has become my greatest strength and sweetest comfort.",
+      "I don’t need riches or fame, just a lifetime with you by my side.",
+      "Cristal, you are the miracle I never knew I needed until I found you.",
+      "Every beat of my heart is a reminder of how deeply I love you.",
+      "Cristal, even eternity would not be enough time to show you my love.",
+      "Your love is the poetry that makes my soul sing every day.",
+      "Cristal, you’ve made my life more beautiful than I ever thought it could be."
+    ];
 
-    // Init
-    $('#partner').value = state.partner;
-    $('#fromName').value = state.from;
-    renderGallery();
-    computeMonths();
-
-    function computeMonths(){
-      const chip = $('#daysTogether');
-      if(!state.since){ chip.textContent = '4 months'; return; }
-      const start = new Date(state.since);
-      if(isNaN(+start)){ chip.textContent = '4 months'; return; }
-      const now = new Date();
-      let months = (now.getFullYear(), start.getFullYear())*12 + (now.getMonth(), start.getMonth());
-      if(now.getDate()<start.getDate()) months , = 1;
-      chip.textContent = months + (months===1?' month':' months');
+    function generateNote() {
+      const note = document.getElementById('note');
+      const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
+      typeWriter(note, randomReason);
     }
 
-    // , , ,  Typing effect , , , 
-    async function typeText(el, text){
-      el.textContent = '';
-      for(let i=0;i<text.length;i++){
-        el.textContent += text[i];
-        await new Promise(r=>setTimeout(r, 8));
-      }
+    function typeWriter(element, text) {
+      let i = 0;
+      element.innerHTML = '';
+      const interval = setInterval(() => {
+        element.innerHTML = text.substring(0, i+1);
+        i++;
+        if (i === text.length) clearInterval(interval);
+      }, 50);
     }
 
-    // , , ,  Generator , , , 
-    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)] }
-
-    function generateNote(){
-      const dear = state.partner ? `Dear ${state.partner},` : 'Dear you,';
-      const middle = pick(state.reasons);
-      const closing = state.from ? `\n\nWith love,\n${state.from}` : '\n\nWith love.';
-      const stamp = new Date().toLocaleString();
-      const text = `${dear}\n\n${middle}\n${closing}`;
-      typeText($('#output'), text);
-      $('#stamp').textContent = stamp;
-      return {text, stamp};
+    function copyNote() {
+      const text = document.getElementById('note').innerText;
+      navigator.clipboard.writeText(text);
+      alert('Note copied to clipboard!');
     }
 
-    // , , ,  Canvas export (PNG) , , , 
-    function saveAsImage(text){
-      const canvas = $('#canvas');
-      const ctx = canvas.getContext('2d');
-      const W = 1080, H = 1350, P = 64; // phone, friendly export
-      canvas.width = W; canvas.height = H;
-      // Background gradient
-      const grad = ctx.createLinearGradient(0,0,W,H);
-      grad.addColorStop(0,'#fff0f9');
-      grad.addColorStop(1,'#ffe6f7');
-      ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
-      // Rounded white card
-      roundRect(ctx, P, P, W, P*2, H, P*2, 40, '#ffffff');
-      // Title
-      ctx.fillStyle = '#9b4bd8';
-      ctx.font = 'bold 36px Inter, , apple, system, system, ui';
-      ctx.fillText('For Cristal', P+40, P+50);
-      // Body
-      ctx.fillStyle = '#4a2a4a';
-      wrapText(ctx, text, P+40, P+110, W, (P+40)*2, 48, '28px Inter, , apple, system, system, ui');
-      // Stamp
-      ctx.font = '16px Inter, , apple, system, system, ui';
-      ctx.fillStyle = '#7b7b7b';
-      ctx.fillText(new Date().toLocaleString(), P+40, H, P, 30);
-      const url = canvas.toDataURL('image/png');
-      addToGallery(url, text);
-      download(url, 'love, note.png');
-    }
-
-    function roundRect(ctx, x,y,w,h,r, fill){
-      ctx.beginPath();
-      ctx.moveTo(x+r, y);
-      ctx.arcTo(x+w, y, x+w, y+h, r);
-      ctx.arcTo(x+w, y+h, x, y+h, r);
-      ctx.arcTo(x, y+h, x, y, r);
-      ctx.arcTo(x, y, x+w, y, r);
-      ctx.closePath();
-      ctx.fillStyle = fill; ctx.fill();
-    }
-
-    function wrapText(ctx, text, x, y, maxWidth, lineHeight, font){
-      ctx.font = font; ctx.textBaseline='top';
-      const words = text.split(/\s+/);
-      let line = '';
-      for(let i=0;i<words.length;i++){
-        const test = line + words[i] + ' ';
-        if(ctx.measureText(test).width > maxWidth && i>0){
-          ctx.fillText(line, x, y); y+=lineHeight; line = words[i] + ' ';
-        } else { line = test; }
-      }
-      ctx.fillText(line, x, y);
-    }
-
-    function download(url, name){
-      const a=document.createElement('a'); a.href=url; a.download=name; a.click();
-    }
-
-    // , , ,  Gallery , , , 
-    function addToGallery(url, text){
-      state.gallery.unshift({url, text, t:+new Date});
-      localStorage.setItem('ll_gallery', JSON.stringify(state.gallery));
-      renderGallery();
-    }
-
-    function renderGallery(){
-      const wrap = $('#gallery');
-      const count = $('#galleryCount');
-      wrap.innerHTML = '';
-      count.textContent = state.gallery.length;
-      state.gallery.forEach((item, idx)=>{
-        const fig = document.createElement('figure');
-        fig.style.margin=0; fig.style.position='relative'; fig.style.borderRadius='14px'; fig.style.overflow='hidden'; fig.style.boxShadow='0 6px 14px rgba(0,0,0,.08)';
-        const img = document.createElement('img');
-        img.src=item.url; img.alt='Saved note'; img.style.width='100%'; img.style.display='block';
-        fig.appendChild(img);
-        fig.addEventListener('contextmenu', e=>e.preventDefault());
-        let pressTimer;
-        fig.addEventListener('touchstart', ()=>{ pressTimer=setTimeout(()=>{ del(idx); },700); }, {passive:true});
-        fig.addEventListener('touchend', ()=>clearTimeout(pressTimer));
-        fig.addEventListener('mousedown', ()=>{ pressTimer=setTimeout(()=>{ del(idx); },700); });
-        fig.addEventListener('mouseup', ()=>clearTimeout(pressTimer));
-        wrap.appendChild(fig);
-      });
-      function del(i){ if(confirm('Delete this saved note?')){ state.gallery.splice(i,1); localStorage.setItem('ll_gallery', JSON.stringify(state.gallery)); renderGallery(); } }
-    }
-
-    // , , ,  Events , , , 
-    $('#gen').addEventListener('click', ()=>generateNote());
-    $('#save').addEventListener('click', ()=>{ const {text}=generateNote(); saveAsImage(text); });
-    $('#share').addEventListener('click', async ()=>{
-      const {text} = generateNote();
-      if(navigator.share){
-        try{ await navigator.share({ text }); }catch(e){ }
+    function shareNote() {
+      const text = document.getElementById('note').innerText;
+      if (navigator.share) {
+        navigator.share({text});
       } else {
-        try{ await navigator.clipboard.writeText(text); alert('Copied to clipboard!'); }catch{ alert('Share not supported. Text copied (if allowed).'); }
+        alert('Sharing not supported on this device');
+      }
+    }
+
+    function saveNote() {
+      const text = document.getElementById('note').innerText;
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = 600;
+      canvas.height = 300;
+      ctx.fillStyle = '#fff0f9';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#4a004e';
+      ctx.font = '20px Comic Sans MS';
+      ctx.fillText(text, 20, 150);
+      const link = document.createElement('a');
+      link.download = 'love-note.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+
+    document.getElementById('monthsChip').addEventListener('click', () => {
+      const newDate = prompt('Enter start date (YYYY-MM-DD):');
+      if (newDate) {
+        const start = new Date(newDate);
+        const now = new Date();
+        const diffMonths = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+        document.getElementById('monthsChip').innerText = diffMonths + ' months';
       }
     });
-
-    $('#partner').addEventListener('input', (e)=>{ state.partner=e.target.value.trim(); });
-    $('#fromName').addEventListener('input', (e)=>{ state.from=e.target.value.trim(); localStorage.setItem('ll_from', state.from); });
-
-    // Import / Export / Add
-    $('#addReasons').addEventListener('click', ()=>{
-      const raw = $('#customReasons').value.trim();
-      if(!raw){ alert('Write at least one line'); return; }
-      const lines = raw.split(/\n+/).map(s=>s.trim()).filter(Boolean);
-      state.reasons = [...new Set([...state.reasons, ...lines])];
-      localStorage.setItem('ll_reasons', JSON.stringify(state.reasons));
-      $('#customReasons').value='';
-      alert('Added! Your list now has '+state.reasons.length+' reasons.');
-    });
-
-    $('#exportReasons').addEventListener('click', ()=>{
-      const data = new Blob([JSON.stringify({reasons:state.reasons}, null, 2)], {type:'application/json'});
-      const url = URL.createObjectURL(data);
-      download(url, 'reasons.json');
-      setTimeout(()=>URL.revokeObjectURL(url), 800);
-    });
-
-    $('#importReasons').addEventListener('click', ()=>$('#fileInput').click());
-    $('#fileInput').addEventListener('change', (e)=>{
-      const file = e.target.files[0]; if(!file) return;
-      const r = new FileReader();
-      r.onload = ()=>{
-        try{
-          const json = JSON.parse(r.result);
-          if(Array.isArray(json.reasons)){
-            state.reasons = [...new Set([...state.reasons, ...json.reasons.filter(Boolean)])];
-            localStorage.setItem('ll_reasons', JSON.stringify(state.reasons));
-            alert('Imported! Total reasons: '+state.reasons.length);
-          } else { alert('Invalid file format.'); }
-        }catch{ alert('Could not read file.'); }
-      };
-      r.readAsText(file);
-    });
-
-    // Set start date via chip
-    $('#daysTogether').addEventListener('click', ()=>{
-      const val = prompt('Enter your start date (YYYY, MM, DD). Optional.');
-      if(val){ state.since=val; localStorage.setItem('ll_since', val); computeMonths(); }
-    })
   </script>
 </body>
 </html>
